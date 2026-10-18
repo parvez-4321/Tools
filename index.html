@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#101828">
+<meta name="description" content="A fast, free collection of useful browser-based tools: word counter, case converter, JSON formatter, Base64, URL encoder and password generator.">
+<title>Tools — Simple Online Utilities</title>
+<style>
+:root{color-scheme:dark;--bg:#0b1020;--panel:#121a2d;--panel2:#18233a;--line:#293651;--text:#eef3ff;--muted:#a8b4cc;--accent:#8b9cff;--accent2:#b7c0ff;--good:#7de2b8}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at top,#172347 0,#0b1020 52%);color:var(--text);font:16px/1.55 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;min-height:100vh}button,input,textarea,select{font:inherit}button{cursor:pointer}.wrap{width:min(1120px,calc(100% - 32px));margin:auto}.top{padding:38px 0 26px}.brand{display:flex;align-items:center;gap:12px}.logo{width:44px;height:44px;border-radius:14px;background:linear-gradient(135deg,#a8b3ff,#6877ed);display:grid;place-items:center;color:#10162c;font-weight:900;font-size:21px;box-shadow:0 8px 28px #6877ed44}.eyebrow{font-size:12px;text-transform:uppercase;letter-spacing:.16em;color:var(--accent2);font-weight:700}.brand h1{font-size:25px;line-height:1.2;margin:2px 0}.intro{max-width:650px;color:var(--muted);margin:24px 0 20px}.search{width:100%;background:#111a2e;border:1px solid var(--line);color:var(--text);padding:13px 15px;border-radius:12px;outline:none}.search:focus,textarea:focus,input:focus,select:focus{border-color:var(--accent);box-shadow:0 0 0 3px #8b9cff20}.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0 24px}.tab,.btn{border:1px solid var(--line);background:var(--panel2);color:var(--text);border-radius:9px;padding:9px 13px}.tab.active,.btn.primary{background:var(--accent);border-color:var(--accent);color:#0b1020;font-weight:750}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.card{background:linear-gradient(155deg,#151f35,#101729);border:1px solid var(--line);border-radius:16px;padding:20px;min-width:0}.card h2{font-size:18px;margin:0 0 4px}.desc{font-size:13px;color:var(--muted);margin:0 0 16px}.field{display:block;width:100%;background:#0b1222;border:1px solid var(--line);color:var(--text);padding:11px 12px;border-radius:9px;outline:none;margin:8px 0 12px}.area{min-height:124px;resize:vertical}.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}.row .field{flex:1;min-width:120px}.output{color:var(--muted);font-size:13px;min-height:22px;margin:10px 0 0}.stats{display:flex;gap:14px;flex-wrap:wrap;margin:8px 0 14px}.stat{background:#0b1222;border:1px solid var(--line);border-radius:9px;padding:8px 11px;color:var(--muted);font-size:13px}.stat strong{color:var(--text);display:block;font-size:18px}.small{font-size:12px;color:var(--muted)}footer{padding:34px 0 28px;color:var(--muted);font-size:13px;text-align:center}.empty{display:none;text-align:center;color:var(--muted);padding:30px}@media(max-width:700px){.grid{grid-template-columns:1fr}.top{padding-top:26px}.card{padding:16px}.brand h1{font-size:22px}}
+</style>
+</head>
+<body>
+<header class="wrap top">
+  <div class="brand"><div class="logo" aria-hidden="true">T</div><div><div class="eyebrow">Simple • Fast • Free</div><h1>Tools</h1></div></div>
+  <p class="intro">A growing collection of handy online utilities. Everything runs directly in your browser — your text and data are not uploaded to a server.</p>
+  <input class="search" id="search" type="search" placeholder="Search tools…" aria-label="Search tools">
+  <nav class="tabs" aria-label="Tool categories"><button class="tab active" data-filter="all">All tools</button><button class="tab" data-filter="text">Text</button><button class="tab" data-filter="developer">Developer</button><button class="tab" data-filter="security">Security</button></nav>
+</header>
+<main class="wrap">
+<section class="grid" id="tools">
+<article class="card" data-name="word counter text characters sentences paragraphs" data-category="text">
+<h2>Word & Character Counter</h2><p class="desc">Count words, characters, sentences and paragraphs as you type.</p>
+<textarea id="wordInput" class="field area" placeholder="Type or paste your text here…"></textarea>
+<div class="stats"><div class="stat"><strong id="words">0</strong>Words</div><div class="stat"><strong id="chars">0</strong>Characters</div><div class="stat"><strong id="charsNoSpace">0</strong>No spaces</div><div class="stat"><strong id="sentences">0</strong>Sentences</div></div>
+</article>
+<article class="card" data-name="case converter uppercase lowercase title case sentence case text" data-category="text">
+<h2>Case Converter</h2><p class="desc">Convert text to uppercase, lowercase, title case or sentence case.</p>
+<textarea id="caseInput" class="field area" placeholder="Enter text to convert…"></textarea>
+<div class="row"><button class="btn" data-case="upper">UPPERCASE</button><button class="btn" data-case="lower">lowercase</button><button class="btn" data-case="title">Title Case</button><button class="btn" data-case="sentence">Sentence case</button><button class="btn" id="copyCase">Copy</button></div><p id="caseStatus" class="output" aria-live="polite"></p>
+</article>
+<article class="card" data-name="json formatter validator pretty print developer" data-category="developer">
+<h2>JSON Formatter & Validator</h2><p class="desc">Format JSON neatly or validate whether it is valid.</p>
+<textarea id="jsonInput" class="field area" placeholder='Paste JSON, e.g. {"hello":"world"}'></textarea>
+<div class="row"><button class="btn primary" id="formatJson">Format JSON</button><button class="btn" id="minifyJson">Minify</button><button class="btn" id="copyJson">Copy result</button></div><textarea id="jsonOutput" class="field area" placeholder="Formatted output appears here…" readonly></textarea><p id="jsonStatus" class="output" aria-live="polite"></p>
+</article>
+<article class="card" data-name="url encoder decoder encode decode developer" data-category="developer">
+<h2>URL Encoder / Decoder</h2><p class="desc">Safely encode text for URLs or decode percent-encoded strings.</p>
+<textarea id="urlInput" class="field area" placeholder="Enter text or a URL-encoded string…"></textarea>
+<div class="row"><button class="btn primary" id="urlEncode">Encode</button><button class="btn" id="urlDecode">Decode</button><button class="btn" id="urlCopy">Copy result</button></div><textarea id="urlOutput" class="field" placeholder="Result…" readonly></textarea><p id="urlStatus" class="output" aria-live="polite"></p>
+</article>
+<article class="card" data-name="base64 encoder decoder developer" data-category="developer">
+<h2>Base64 Encoder / Decoder</h2><p class="desc">Convert plain text to Base64 and decode Base64 back to text.</p>
+<textarea id="baseInput" class="field area" placeholder="Enter plain text or Base64…"></textarea>
+<div class="row"><button class="btn primary" id="baseEncode">Encode</button><button class="btn" id="baseDecode">Decode</button><button class="btn" id="baseCopy">Copy result</button></div><textarea id="baseOutput" class="field" placeholder="Result…" readonly></textarea><p id="baseStatus" class="output" aria-live="polite"></p>
+</article>
+<article class="card" data-name="password generator secure random security" data-category="security">
+<h2>Password Generator</h2><p class="desc">Generate a random password locally in your browser.</p>
+<div class="row"><label for="passLength" class="small">Length</label><input id="passLength" class="field" type="number" min="8" max="128" value="20" style="max-width:100px"><label class="small"><input id="passUpper" type="checkbox" checked> A–Z</label><label class="small"><input id="passLower" type="checkbox" checked> a–z</label><label class="small"><input id="passNumbers" type="checkbox" checked> 0–9</label><label class="small"><input id="passSymbols" type="checkbox" checked> Symbols</label></div>
+<div class="row"><input id="passOutput" class="field" readonly placeholder="Your password…" aria-label="Generated password"><button class="btn primary" id="generatePass">Generate</button><button class="btn" id="copyPass">Copy</button></div><p id="passStatus" class="output" aria-live="polite"></p><p class="small">Tip: use a unique password for every account. This tool does not save generated passwords.</p>
+</article>
+</section>
+<p id="empty" class="empty">No tools match your search. Try another term.</p>
+</main>
+<footer class="wrap">Tools · Free browser-based utilities · <span id="year"></span><br><span class="small">Your input stays in this browser; this page does not send tool data to a server.</span></footer>
+<script>
+const $=id=>document.getElementById(id);
+const copyText=async(value,status)=>{if(!value){status.textContent='Nothing to copy yet.';return}try{await navigator.clipboard.writeText(value);status.textContent='Copied to clipboard.'}catch{const t=document.createElement('textarea');t.value=value;document.body.appendChild(t);t.select();const ok=document.execCommand('copy');t.remove();status.textContent=ok?'Copied to clipboard.':'Copy failed. Please select and copy manually.'}};
+$('year').textContent=new Date().getFullYear();
+function updateCounts(){const t=$('wordInput').value;const words=t.trim()?t.trim().split(/\s+/u).length:0;$('words').textContent=words.toLocaleString();$('chars').textContent=t.length.toLocaleString();$('charsNoSpace').textContent=t.replace(/\s/g,'').length.toLocaleString();$('sentences').textContent=(t.trim().match(/[^.!?]+[.!?]+|[^.!?]+$/g)||[]).filter(s=>s.trim()).length.toLocaleString()}
+$('wordInput').addEventListener('input',updateCounts);
+document.querySelectorAll('[data-case]').forEach(b=>b.addEventListener('click',()=>{const t=$('caseInput').value;let out=t;if(b.dataset.case==='upper')out=t.toLocaleUpperCase();if(b.dataset.case==='lower')out=t.toLocaleLowerCase();if(b.dataset.case==='title')out=t.toLocaleLowerCase().replace(/\b\p{L}/gu,c=>c.toLocaleUpperCase());if(b.dataset.case==='sentence')out=t.toLocaleLowerCase().replace(/(^\s*|[.!?]\s+)(\p{L})/gu,(_,a,c)=>a+c.toLocaleUpperCase());$('caseInput').value=out;$('caseStatus').textContent='Converted.'}));
+$('copyCase').addEventListener('click',()=>copyText($('caseInput').value,$('caseStatus')));
+function jsonAction(mode){try{const parsed=JSON.parse($('jsonInput').value);$('jsonOutput').value=mode==='pretty'?JSON.stringify(parsed,null,2):JSON.stringify(parsed);$('jsonStatus').textContent='Valid JSON.'}catch(e){$('jsonOutput').value='';$('jsonStatus').textContent='Invalid JSON: '+e.message}}
+$('formatJson').addEventListener('click',()=>jsonAction('pretty'));$('minifyJson').addEventListener('click',()=>jsonAction('minify'));$('copyJson').addEventListener('click',()=>copyText($('jsonOutput').value,$('jsonStatus')));
+$('urlEncode').addEventListener('click',()=>{try{$('urlOutput').value=encodeURIComponent($('urlInput').value);$('urlStatus').textContent='Encoded.'}catch(e){$('urlStatus').textContent='Could not encode input.'}});$('urlDecode').addEventListener('click',()=>{try{$('urlOutput').value=decodeURIComponent($('urlInput').value);$('urlStatus').textContent='Decoded.'}catch(e){$('urlStatus').textContent='Invalid encoded text.'}});$('urlCopy').addEventListener('click',()=>copyText($('urlOutput').value,$('urlStatus')));
+$('baseEncode').addEventListener('click',()=>{try{$('baseOutput').value=btoa(unescape(encodeURIComponent($('baseInput').value)));$('baseStatus').textContent='Encoded.'}catch(e){$('baseStatus').textContent='Could not encode input.'}});$('baseDecode').addEventListener('click',()=>{try{$('baseOutput').value=decodeURIComponent(escape(atob($('baseInput').value.trim())));$('baseStatus').textContent='Decoded.'}catch(e){$('baseStatus').textContent='Invalid Base64 or unsupported text.'}});$('baseCopy').addEventListener('click',()=>copyText($('baseOutput').value,$('baseStatus')));
+$('generatePass').addEventListener('click',()=>{let chars='';if($('passUpper').checked)chars+='ABCDEFGHIJKLMNOPQRSTUVWXYZ';if($('passLower').checked)chars+='abcdefghijklmnopqrstuvwxyz';if($('passNumbers').checked)chars+='0123456789';if($('passSymbols').checked)chars+='!@#$%^&*()-_=+[]{}:,.?';if(!chars){$('passStatus').textContent='Select at least one character set.';return}const len=Math.max(8,Math.min(128,Number($('passLength').value)||20));$('passLength').value=len;const bytes=new Uint32Array(len);crypto.getRandomValues(bytes);$('passOutput').value=Array.from(bytes,n=>chars[n%chars.length]).join('');$('passStatus').textContent='Password generated locally.'});
+$('copyPass').addEventListener('click',()=>copyText($('passOutput').value,$('passStatus')));$('generatePass').click();
+let activeFilter='all';function filterTools(){const q=$('search').value.trim().toLowerCase();let shown=0;document.querySelectorAll('.card').forEach(c=>{const matchesText=(c.dataset.name+' '+c.innerText).toLowerCase().includes(q);const matchesCat=activeFilter==='all'||c.dataset.category===activeFilter;c.style.display=matchesText&&matchesCat?'':'none';if(matchesText&&matchesCat)shown++});$('empty').style.display=shown?'none':'block'}
+$('search').addEventListener('input',filterTools);document.querySelectorAll('.tab').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('active',t===b));activeFilter=b.dataset.filter;filterTools()}));
+</script>
+</body>
+</html>
